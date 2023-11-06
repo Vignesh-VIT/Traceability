@@ -1,4 +1,4 @@
-.. version: {labels}
+.. version: 
 
 Requirement REQ-001
 ===================
