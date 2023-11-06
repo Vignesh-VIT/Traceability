@@ -31,4 +31,4 @@ jobs:
           git config --global user.email "winvicky1998@gmail.com"
           git add /home/runner/work/Traceability/Traceability/requirements.rst
           git commit -m "Update labels in RST file"
-          git push
+          git push origin HEAD:main --force
