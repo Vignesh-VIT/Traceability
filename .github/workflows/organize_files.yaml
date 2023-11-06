@@ -26,9 +26,8 @@ jobs:
           LABEL: ${{ github.event.pull_request.labels[0].name }}
 
       - name: Commit Changes
-        run: |
-          git config --global user.name "Vignesh-VIT"
-          git config --global user.email "winvicky1998@gmail.com"
-          git add /home/runner/work/Traceability/Traceability/requirements.rst
-          git commit -m "Update labels in RST file"
-          git push origin HEAD:main --force
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with: 
+          commit_message: after organize the files
+          branch: featureworkitem1
+   
