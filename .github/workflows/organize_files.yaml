@@ -4,8 +4,6 @@ on:
   pull_request:
     types:
       - opened
-      - labeled
-
 jobs:
   move_files:
     runs-on: ubuntu-latest
@@ -13,6 +11,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Update Labels
+        run: sed -i "s/{labels}/$GITHUB_EVENT_LABELS/g" /home/runner/work/Traceability/Traceability/requirements.rst
+
       - name: Check for label and move files
         id: move-files
         run: |
@@ -22,3 +24,11 @@ jobs:
           fi
         env:
           LABEL: ${{ github.event.pull_request.labels[0].name }}
+
+      - name: Commit Changes
+        run: |
+          git config --global user.name "Vignesh-VIT"
+          git config --global user.email "winvicky1998@gmail.com"
+          git add /home/runner/work/Traceability/Traceability/requirements.rst
+          git commit -m "Update labels in RST file"
+          git push
