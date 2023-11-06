@@ -16,7 +16,7 @@ jobs:
         run: |
           if [ -n "$LABEL" ]; then
             mkdir -p "$LABEL"
-            mv *.txt "$LABEL/"
+            mv *.rst "$LABEL/"
           fi
         env:
           LABEL: ${{ github.event.pull_request.labels[0].name }}
