@@ -2,7 +2,7 @@ import os
 import shutil
 
 labels = os.getenv("INPUT_PULL_REQUEST_LABELS").split(",")
-file_extensions = [".pdf", ".docx"]  # Define the file extensions to organize
+file_extensions = [".pdf", ".doc"]  # Define the file extensions to organize
 
 for label in labels:
     # Create a folder based on the label name
