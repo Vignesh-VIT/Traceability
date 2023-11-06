@@ -1,0 +1,21 @@
+name: Organize Files on PR
+
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  organize_files:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Organize files
+      run: |
+        # Your Python script to organize files here
+        python script.py
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
