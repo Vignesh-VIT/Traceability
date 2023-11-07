@@ -19,8 +19,10 @@ jobs:
           label=$(curl -s "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/labels" | jq -r '.[0].name')
           echo "::set-output name=label::$label"
 
-      - name: Update Labels
-        run: sed -i "s/{labels}/$GITHUB_EVENT_LABELS/g" /home/runner/work/Traceability/Traceability/*.rst
+      - name: Update RST File
+        run: | 
+          label=${{ steps.extract-label.outputs.label }}
+          sed -i "s/Label Value: .*/Label Value: $label/" /home/runner/work/Traceability/Traceability/*.rst
 
       - name: Check for label and move files
         id: move-files
