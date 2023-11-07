@@ -1,16 +1,15 @@
-import os
-import shutil
+import sys
 
-labels = os.getenv("INPUT_PULL_REQUEST_LABELS").split(",")
-file_extensions = [".pdf", ".docx"]  # Define the file extensions to organize
+label = sys.argv[1]
 
-for label in labels:
-    # Create a folder based on the label name
-    if not os.path.exists(label):
-        os.makedirs(label)
+# Read the RST file
+with open('path/to/your/file.rst', 'r') as file:
+    rst_content = file.read()
 
-    # Organize files with specific extensions
-    for ext in file_extensions:
-        for file in os.listdir():
-            if file.endswith(ext):
-                shutil.move(file, os.path.join(label, file))
+# Update a specific placeholder with the label value
+placeholder = "Label Placeholder: "
+new_rst_content = rst_content.replace(placeholder, f"{placeholder}{label}")
+
+# Write the updated content back to the RST file
+with open('path/to/your/file.rst', 'w') as file:
+    file.write(new_rst_content)
