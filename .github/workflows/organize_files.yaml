@@ -22,7 +22,6 @@ jobs:
       - name: Update RST File
         run: | 
           label=${{ steps.extract-label.outputs.label }}
-          python script.py "$label"
           sed -i "s/Label Value: .*/Label Value: $label/" /home/runner/work/Traceability/Traceability/*.rst
 
       - name: Check for label and move files
