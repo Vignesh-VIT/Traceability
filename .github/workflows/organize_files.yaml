@@ -12,6 +12,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Extract label
+        id: extract-label
+        run: |
+          pr_number=${{ github.event.pull_request.number }}
+          label=$(curl -s "https://api.github.com/repos/${{ github.repository }}/issues/$pr_number/labels" | jq -r '.[0].name')
+          echo "::set-output name=label::$label"
+
       - name: Update Labels
         run: sed -i "s/{labels}/$GITHUB_EVENT_LABELS/g" /home/runner/work/Traceability/Traceability/*.rst
 
@@ -30,4 +37,3 @@ jobs:
         with: 
           commit_message: after organize the files
           branch: featureworkitem1
-   
